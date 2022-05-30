@@ -134,13 +134,6 @@ struct type_list
     }
 
     template<template<typename...> class U, typename Func>
-    static auto _for_each_and_collect_helper(const Func& func)
-        -> U<decltype(func(TS()))...>
-    {
-        return U<decltype(func(TS()))...>(func(TS())...);
-    }
-
-    template<template<typename...> class U, typename Func>
     static auto for_each_and_collect(const Func& func)
     {
         return enumerate::template _for_each_and_collect_helper<U, Func>(func);
